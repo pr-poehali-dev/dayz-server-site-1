@@ -80,11 +80,11 @@ function Navbar({ active, setActive }: { active: string; setActive: (id: string)
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <button onClick={() => setActive("home")} className="flex items-center gap-3 group">
-          <div className="w-8 h-8 border border-primary/60 flex items-center justify-center animate-pulse-glow">
-            <Icon name="Skull" size={16} className="text-primary" />
+          <div className="w-8 h-8 border border-white/60 flex items-center justify-center animate-pulse-glow">
+            <Icon name="Skull" size={16} className="text-white" />
           </div>
-          <span className="font-oswald text-lg uppercase tracking-widest text-foreground group-hover:text-primary transition-colors">
-            Outpost<span className="text-primary">.</span>DayZ
+          <span className="font-oswald text-lg uppercase tracking-widest text-foreground group-hover:text-white transition-colors">
+            Outpost<span className="text-white">.</span>DayZ
           </span>
         </button>
 
@@ -148,7 +148,7 @@ function HomePage({ setActive }: { setActive: (id: string) => void }) {
           <div className="max-w-2xl">
             <h1 className="font-oswald text-5xl md:text-7xl uppercase leading-none mb-4 animate-fade-in delay-100">
               Выживи<br />
-              <span className="text-primary glow-text">или умри</span>
+              <span className="text-white glow-text">или умри</span>
             </h1>
 
             <p className="font-roboto text-muted-foreground text-lg mb-8 leading-relaxed animate-fade-in delay-200">
@@ -174,8 +174,8 @@ function HomePage({ setActive }: { setActive: (id: string) => void }) {
             { icon: "Users", title: "Сообщество", desc: "Присоединяйтесь к нашему Discord каналу" },
           ].map((f, i) => (
             <div key={f.title} className={`card-product p-6 animate-fade-in delay-${(i + 1) * 100}`}>
-              <div className="w-10 h-10 border border-primary/40 flex items-center justify-center mb-4">
-                <Icon name={f.icon} size={20} className="text-primary" />
+              <div className="w-10 h-10 border border-white/40 flex items-center justify-center mb-4">
+                <Icon name={f.icon} size={20} className="text-white" />
               </div>
               <h3 className="font-oswald text-lg uppercase tracking-wide mb-2">{f.title}</h3>
               <p className="font-roboto text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
@@ -223,7 +223,7 @@ function CatalogPage({ setActive }: { setActive: (id: string) => void }) {
             placeholder="Поиск товаров..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full bg-card border border-border pl-10 pr-4 py-3 font-roboto text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+            className="w-full bg-card border border-border pl-10 pr-4 py-3 font-roboto text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-white/50 transition-colors"
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -233,8 +233,8 @@ function CatalogPage({ setActive }: { setActive: (id: string) => void }) {
               onClick={() => setActiveCategory(cat)}
               className={`font-oswald text-xs uppercase tracking-wider px-4 py-3 border transition-colors ${
                 activeCategory === cat
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  ? "border-white bg-white/10 text-white"
+                  : "border-border text-muted-foreground hover:border-white/40 hover:text-foreground"
               }`}
             >
               {cat}
@@ -248,7 +248,7 @@ function CatalogPage({ setActive }: { setActive: (id: string) => void }) {
           <div key={product.id} className="card-product animate-fade-in">
             <div className="p-4 pb-0 flex justify-between items-start">
               <div className="w-10 h-10 bg-muted border border-border flex items-center justify-center">
-                <Icon name={product.icon} size={18} className="text-primary" fallback="Package" />
+                <Icon name={product.icon} size={18} className="text-white" fallback="Package" />
               </div>
               {product.badge && (
                 <span className={`tag-badge border ${BADGE_COLORS[product.badge] || "bg-muted text-muted-foreground border-border"}`}>
@@ -263,7 +263,7 @@ function CatalogPage({ setActive }: { setActive: (id: string) => void }) {
               <p className="font-roboto text-xs text-muted-foreground leading-relaxed mb-4">{product.desc}</p>
 
               <div className="flex items-center justify-between">
-                <span className="font-oswald text-xl text-primary">{product.price} <span className="text-sm">₽</span></span>
+                <span className="font-oswald text-xl text-white">{product.price} <span className="text-sm">₽</span></span>
                 <button onClick={() => setActive("cabinet")} className="btn-primary text-xs px-4 py-2">
                   Купить
                 </button>
@@ -305,7 +305,7 @@ function CabinetPage({ setActive }: { setActive: (id: string) => void }) {
           </button>
           <p className="font-roboto text-xs text-muted-foreground mt-6">
             Нажимая кнопку, вы соглашаетесь с{" "}
-            <button onClick={() => setActive("legal")} className="text-primary hover:underline">
+            <button onClick={() => setActive("legal")} className="text-white hover:underline">
               пользовательским соглашением
             </button>
           </p>
@@ -319,14 +319,14 @@ function CabinetPage({ setActive }: { setActive: (id: string) => void }) {
       <div className="flex flex-col md:flex-row gap-6">
         <div className="md:w-64 space-y-4">
           <div className="card-product p-6 text-center">
-            <div className="w-16 h-16 border border-primary/40 flex items-center justify-center mx-auto mb-3">
-              <Icon name="User" size={28} className="text-primary" />
+            <div className="w-16 h-16 border border-white/40 flex items-center justify-center mx-auto mb-3">
+              <Icon name="User" size={28} className="text-white" />
             </div>
             <div className="font-oswald text-lg uppercase">SurvivorXX</div>
             <div className="font-roboto text-xs text-muted-foreground">Steam ID: 76561198...</div>
             <div className="mt-4 p-3 bg-muted border border-border">
               <div className="font-roboto text-xs text-muted-foreground mb-1">Баланс</div>
-              <div className="font-oswald text-2xl text-primary">320 ₽</div>
+              <div className="font-oswald text-2xl text-white">320 ₽</div>
             </div>
             <button onClick={() => setActive("topup")} className="btn-primary w-full mt-4 text-xs justify-center flex items-center gap-2">
               <Icon name="Plus" size={14} />
@@ -344,7 +344,7 @@ function CabinetPage({ setActive }: { setActive: (id: string) => void }) {
                 onClick={() => setTab(item.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 font-oswald text-sm uppercase tracking-wide transition-colors border ${
                   tab === item.id
-                    ? "border-primary/40 bg-primary/10 text-primary"
+                    ? "border-white/40 bg-white/10 text-white"
                     : "border-transparent text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -388,7 +388,7 @@ function CabinetPage({ setActive }: { setActive: (id: string) => void }) {
                       <div className="font-roboto text-xs text-muted-foreground mt-1">{purchase.date}</div>
                     </div>
                     <div className="text-right">
-                      <div className="font-oswald text-base text-primary">{purchase.price} ₽</div>
+                      <div className="font-oswald text-base text-white">{purchase.price} ₽</div>
                       <div className="font-roboto text-xs text-green-400 mt-1">{purchase.status}</div>
                     </div>
                   </div>
@@ -423,8 +423,8 @@ function TopupPage() {
                 onClick={() => setAmount(preset)}
                 className={`font-oswald text-sm py-3 border transition-colors ${
                   amount === preset
-                    ? "border-primary bg-primary/10 text-primary"
-                    : "border-border text-muted-foreground hover:border-primary/40"
+                    ? "border-white bg-white/10 text-white"
+                    : "border-border text-muted-foreground hover:border-white/40"
                 }`}
               >
                 {preset} ₽
@@ -443,7 +443,7 @@ function TopupPage() {
                 onChange={e => setAmount(e.target.value)}
                 min="50"
                 placeholder="Минимум 50 ₽"
-                className="w-full bg-muted border border-border px-4 py-3 font-oswald text-lg text-foreground focus:outline-none focus:border-primary/50 pr-12"
+                className="w-full bg-muted border border-border px-4 py-3 font-oswald text-lg text-foreground focus:outline-none focus:border-white/50 pr-12"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 font-oswald text-muted-foreground">₽</span>
             </div>
@@ -451,7 +451,7 @@ function TopupPage() {
 
           <div className="p-4 bg-muted border border-border text-center">
             <div className="font-roboto text-xs text-muted-foreground mb-1">Будет зачислено на баланс</div>
-            <div className="font-oswald text-3xl text-primary">{amount || "0"} ₽</div>
+            <div className="font-oswald text-3xl text-white">{amount || "0"} ₽</div>
           </div>
         </div>
 
@@ -461,10 +461,10 @@ function TopupPage() {
             {PAYMENT_METHODS.map(method => (
               <button
                 key={method.name}
-                className="w-full flex items-center gap-4 p-4 bg-muted border border-border hover:border-primary/40 transition-colors group"
+                className="w-full flex items-center gap-4 p-4 bg-muted border border-border hover:border-white/40 transition-colors group"
               >
-                <div className="w-10 h-10 border border-border group-hover:border-primary/40 flex items-center justify-center flex-shrink-0 transition-colors">
-                  <Icon name={method.icon} size={18} className="text-muted-foreground group-hover:text-primary transition-colors" fallback="CreditCard" />
+                <div className="w-10 h-10 border border-border group-hover:border-white/40 flex items-center justify-center flex-shrink-0 transition-colors">
+                  <Icon name={method.icon} size={18} className="text-muted-foreground group-hover:text-white transition-colors" fallback="CreditCard" />
                 </div>
                 <div className="text-left">
                   <div className="font-oswald text-sm uppercase tracking-wide text-foreground">{method.name}</div>
@@ -502,8 +502,8 @@ function LegalPage() {
             onClick={() => setTab(t.id)}
             className={`font-oswald text-xs uppercase tracking-wider px-5 py-3 border transition-colors ${
               tab === t.id
-                ? "border-primary bg-primary/10 text-primary"
-                : "border-border text-muted-foreground hover:border-primary/40"
+                ? "border-white bg-white/10 text-white"
+                : "border-border text-muted-foreground hover:border-white/40"
             }`}
           >
             {t.label}
@@ -571,8 +571,8 @@ function SupportPage() {
           { icon: "Mail", title: "Email", desc: "Для официальных обращений и споров", action: "Написать письмо" },
         ].map(c => (
           <div key={c.title} className="card-product p-6 text-center">
-            <div className="w-12 h-12 border border-primary/40 flex items-center justify-center mx-auto mb-4">
-              <Icon name={c.icon} size={22} className="text-primary" />
+            <div className="w-12 h-12 border border-white/40 flex items-center justify-center mx-auto mb-4">
+              <Icon name={c.icon} size={22} className="text-white" />
             </div>
             <h3 className="font-oswald text-base uppercase tracking-wide mb-2">{c.title}</h3>
             <p className="font-roboto text-xs text-muted-foreground mb-4 leading-relaxed">{c.desc}</p>
@@ -592,7 +592,7 @@ function SupportPage() {
             { q: "Как подключиться к серверу?", a: "В Steam откройте DayZ → Найти серверы → поиск по имени «DayZ Server». Или прямое подключение по IP из нашего Discord." },
           ].map(faq => (
             <details key={faq.q} className="group border border-border">
-              <summary className="font-oswald text-sm uppercase tracking-wide px-4 py-4 cursor-pointer text-foreground hover:text-primary transition-colors list-none flex items-center justify-between">
+              <summary className="font-oswald text-sm uppercase tracking-wide px-4 py-4 cursor-pointer text-foreground hover:text-white transition-colors list-none flex items-center justify-between">
                 {faq.q}
                 <Icon name="ChevronDown" size={16} className="text-muted-foreground group-open:rotate-180 transition-transform flex-shrink-0" />
               </summary>
@@ -632,17 +632,17 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-6 h-6 border border-primary/40 flex items-center justify-center">
-                <Icon name="Skull" size={12} className="text-primary" />
+              <div className="w-6 h-6 border border-white/40 flex items-center justify-center">
+                <Icon name="Skull" size={12} className="text-white" />
               </div>
               <span className="font-oswald text-sm uppercase tracking-widest text-muted-foreground">
-                Outpost<span className="text-primary">.</span>DayZ
+                Outpost<span className="text-white">.</span>DayZ
               </span>
             </div>
             <div className="flex gap-6">
-              <button onClick={() => setActivePage("legal")} className="font-roboto text-xs text-muted-foreground hover:text-primary transition-colors">Соглашение</button>
-              <button onClick={() => setActivePage("legal")} className="font-roboto text-xs text-muted-foreground hover:text-primary transition-colors">Конфиденциальность</button>
-              <button onClick={() => setActivePage("support")} className="font-roboto text-xs text-muted-foreground hover:text-primary transition-colors">Поддержка</button>
+              <button onClick={() => setActivePage("legal")} className="font-roboto text-xs text-muted-foreground hover:text-white transition-colors">Соглашение</button>
+              <button onClick={() => setActivePage("legal")} className="font-roboto text-xs text-muted-foreground hover:text-white transition-colors">Конфиденциальность</button>
+              <button onClick={() => setActivePage("support")} className="font-roboto text-xs text-muted-foreground hover:text-white transition-colors">Поддержка</button>
             </div>
             <p className="font-roboto text-xs text-muted-foreground">
               © 2026 Outpost. Не аффилирован с Bohemia Interactive.
