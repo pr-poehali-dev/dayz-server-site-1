@@ -70,7 +70,7 @@ const BADGE_COLORS: Record<string, string> = {
   "Новинка": "bg-blue-900/60 text-blue-300 border-blue-700",
 };
 
-const HERO_IMAGE = "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/files/d6cf382d-ae9a-49df-8691-71edc35870a9.jpg";
+const HERO_IMAGE = "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/files/a2636afa-6b2b-4ee4-addf-057f74f7c2e3.jpg";
 
 // ─── NAVBAR ─────────────────────────────────────────────────────
 function Navbar({ active, setActive }: { active: string; setActive: (id: string) => void }) {
@@ -579,10 +579,9 @@ function SupportPage() {
       <h1 className="section-title mb-2">Служба <span>поддержки</span></h1>
       <p className="font-roboto text-muted-foreground text-sm mb-10">Мы поможем решить любую проблему с сервером или покупками</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12 max-w-2xl">
         {[
           { icon: "MessageCircle", title: "Discord", desc: "Основной канал поддержки. Ответим в течение 1 часа", action: "Перейти в Discord" },
-          { icon: "Send", title: "Telegram", desc: "Быстрая связь с администраторами 24/7", action: "Написать в Telegram" },
           { icon: "Mail", title: "Email", desc: "Для официальных обращений и споров", action: "Написать письмо" },
         ].map(c => (
           <div key={c.title} className="card-product p-6 text-center">
