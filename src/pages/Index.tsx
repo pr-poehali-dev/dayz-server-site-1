@@ -157,23 +157,9 @@ function HomePage({ setActive }: { setActive: (id: string) => void }) {
             </p>
 
             <div className="flex flex-wrap gap-4 animate-fade-in delay-300">
-              <button onClick={() => setActive("catalog")} className="btn-primary text-sm">
-                Открыть каталог
-              </button>
               <button onClick={() => setActive("cabinet")} className="btn-secondary text-sm">
                 Войти через Steam
               </button>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 mt-16 animate-fade-in delay-400 max-w-xs">
-              {[
-                { label: "Товаров в магазине", value: "30+" },
-              ].map(stat => (
-                <div key={stat.label} className="stat-card">
-                  <div className="font-oswald text-2xl text-primary mb-1">{stat.value}</div>
-                  <div className="font-roboto text-xs text-muted-foreground uppercase tracking-wide">{stat.label}</div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -185,7 +171,7 @@ function HomePage({ setActive }: { setActive: (id: string) => void }) {
           {[
             { icon: "Zap", title: "Мгновенная выдача", desc: "Товары выдаются автоматически сразу после оплаты без ожидания" },
             { icon: "Shield", title: "Безопасная оплата", desc: "Все платежи защищены. Возврат средств при технических сбоях" },
-            { icon: "Users", title: "Сообщество", desc: "Присоединяйся к Discord и Telegram — активное комьюнити игроков" },
+            { icon: "Users", title: "Сообщество", desc: "Присоединяйтесь к нашему Discord каналу" },
           ].map((f, i) => (
             <div key={f.title} className={`card-product p-6 animate-fade-in delay-${(i + 1) * 100}`}>
               <div className="w-10 h-10 border border-primary/40 flex items-center justify-center mb-4">
