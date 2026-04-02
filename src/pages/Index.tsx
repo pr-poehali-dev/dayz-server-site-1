@@ -70,7 +70,7 @@ const BADGE_COLORS: Record<string, string> = {
   "Новинка": "bg-blue-900/60 text-blue-300 border-blue-700",
 };
 
-const HERO_IMAGE = "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/files/33987c0c-4f5f-4b70-bbc5-d45a48ad7e3d.jpg";
+const HERO_IMAGE = "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/ca652b88-114f-4b1f-9982-44be187adba7.png";
 
 // ─── NAVBAR ─────────────────────────────────────────────────────
 function Navbar({ active, setActive }: { active: string; setActive: (id: string) => void }) {
