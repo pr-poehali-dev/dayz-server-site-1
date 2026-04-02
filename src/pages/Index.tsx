@@ -84,7 +84,7 @@ function Navbar({ active, setActive }: { active: string; setActive: (id: string)
             <Icon name="Skull" size={16} className="text-primary" />
           </div>
           <span className="font-oswald text-lg uppercase tracking-widest text-foreground group-hover:text-primary transition-colors">
-            DayZ<span className="text-primary">.</span>Server
+            Outpost<span className="text-primary">.</span>DayZ
           </span>
         </button>
 
@@ -146,18 +146,13 @@ function HomePage({ setActive }: { setActive: (id: string) => void }) {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-3 mb-6 animate-fade-in">
-              <div className="w-2 h-2 bg-green-500 rounded-full" />
-              <span className="font-oswald text-xs uppercase tracking-widest text-green-400">Сервер онлайн — 247 игроков</span>
-            </div>
-
             <h1 className="font-oswald text-5xl md:text-7xl uppercase leading-none mb-4 animate-fade-in delay-100">
               Выживи<br />
               <span className="text-primary glow-text">или умри</span>
             </h1>
 
             <p className="font-roboto text-muted-foreground text-lg mb-8 leading-relaxed animate-fade-in delay-200">
-              Официальный магазин игрового сервера DayZ.<br />
+              Официальный сайт проекта Outpost.<br />
               Снаряжение, привилегии и транспорт — для тех, кто хочет выжить.
             </p>
 
@@ -170,11 +165,9 @@ function HomePage({ setActive }: { setActive: (id: string) => void }) {
               </button>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mt-16 animate-fade-in delay-400">
+            <div className="grid grid-cols-1 gap-4 mt-16 animate-fade-in delay-400 max-w-xs">
               {[
-                { label: "Игроков онлайн", value: "247" },
                 { label: "Товаров в магазине", value: "30+" },
-                { label: "Серверов", value: "3" },
               ].map(stat => (
                 <div key={stat.label} className="stat-card">
                   <div className="font-oswald text-2xl text-primary mb-1">{stat.value}</div>
@@ -192,7 +185,7 @@ function HomePage({ setActive }: { setActive: (id: string) => void }) {
           {[
             { icon: "Zap", title: "Мгновенная выдача", desc: "Товары выдаются автоматически сразу после оплаты без ожидания" },
             { icon: "Shield", title: "Безопасная оплата", desc: "Все платежи защищены. Возврат средств при технических сбоях" },
-            { icon: "Headphones", title: "Поддержка 24/7", desc: "Команда администраторов всегда на связи в Discord и Telegram" },
+            { icon: "Users", title: "Сообщество", desc: "Присоединяйся к Discord и Telegram — активное комьюнити игроков" },
           ].map((f, i) => (
             <div key={f.title} className={`card-product p-6 animate-fade-in delay-${(i + 1) * 100}`}>
               <div className="w-10 h-10 border border-primary/40 flex items-center justify-center mb-4">
@@ -658,7 +651,7 @@ export default function Index() {
                 <Icon name="Skull" size={12} className="text-primary" />
               </div>
               <span className="font-oswald text-sm uppercase tracking-widest text-muted-foreground">
-                DayZ<span className="text-primary">.</span>Server
+                Outpost<span className="text-primary">.</span>DayZ
               </span>
             </div>
             <div className="flex gap-6">
@@ -667,7 +660,7 @@ export default function Index() {
               <button onClick={() => setActivePage("support")} className="font-roboto text-xs text-muted-foreground hover:text-primary transition-colors">Поддержка</button>
             </div>
             <p className="font-roboto text-xs text-muted-foreground">
-              © 2026 DayZ Server. Не аффилирован с Bohemia Interactive.
+              © 2026 Outpost. Не аффилирован с Bohemia Interactive.
             </p>
           </div>
         </div>
