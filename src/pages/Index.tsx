@@ -98,7 +98,7 @@ function Navbar({ active, setActive }: { active: string; setActive: (id: string)
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <button onClick={() => setActive("home")} className="flex items-center gap-3 group">
           <div className="w-8 h-8 border border-white/60 flex items-center justify-center animate-pulse-glow">
-            <Icon name="Skull" size={16} className="text-white" />
+            <Icon name="Tower" size={16} className="text-white" fallback="RadioTower" />
           </div>
           <span className="font-oswald text-lg uppercase tracking-widest text-foreground group-hover:text-white transition-colors">
             Outpost<span className="text-white">.</span>DayZ
