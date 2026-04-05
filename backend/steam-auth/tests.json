@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Get Steam login URL",
+    "method": "GET",
+    "path": "?action=login",
+    "expectedStatus": 200
+  }
+]

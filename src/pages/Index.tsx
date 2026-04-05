@@ -1,5 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+
+// ─── STEAM AUTH HELPERS ──────────────────────────────────────────
+const STEAM_AUTH_URL = "/api/steam-auth";
+
+function getSteamLoginUrl(): Promise<string> {
+  return fetch(`${STEAM_AUTH_URL}?action=login`)
+    .then(r => r.json())
+    .then(data => data.url as string);
+}
+
+function getSavedSteamId(): string | null {
+  return localStorage.getItem("steamId");
+}
+
+function saveSteamId(id: string) {
+  localStorage.setItem("steamId", id);
+}
+
+function clearSteamId() {
+  localStorage.removeItem("steamId");
+}
 
 // ─── DATA ───────────────────────────────────────────────────────
 const NAV_ITEMS = [
@@ -90,8 +111,26 @@ const BADGE_COLORS: Record<string, string> = {
 const HERO_IMAGE = "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/ca652b88-114f-4b1f-9982-44be187adba7.png";
 
 // ─── NAVBAR ─────────────────────────────────────────────────────
-function Navbar({ active, setActive }: { active: string; setActive: (id: string) => void }) {
+function Navbar({
+  active,
+  setActive,
+  steamId,
+}: {
+  active: string;
+  setActive: (id: string) => void;
+  steamId: string | null;
+}) {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleSteamLogin = async () => {
+    try {
+      const url = await getSteamLoginUrl();
+      window.location.href = url;
+    } catch {
+      // fallback — navigate to cabinet
+      setActive("cabinet");
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
@@ -118,13 +157,23 @@ function Navbar({ active, setActive }: { active: string; setActive: (id: string)
         </nav>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => setActive("cabinet")}
-            className="btn-primary flex items-center gap-2 text-xs"
-          >
-            <Icon name="LogIn" size={14} />
-            Войти через Steam
-          </button>
+          {steamId ? (
+            <button
+              onClick={() => setActive("cabinet")}
+              className="btn-primary flex items-center gap-2 text-xs"
+            >
+              <Icon name="User" size={14} />
+              Кабинет
+            </button>
+          ) : (
+            <button
+              onClick={handleSteamLogin}
+              className="btn-primary flex items-center gap-2 text-xs"
+            >
+              <Icon name="LogIn" size={14} />
+              Войти через Steam
+            </button>
+          )}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden text-muted-foreground hover:text-foreground transition-colors"
@@ -301,9 +350,28 @@ function CatalogPage({ setActive }: { setActive: (id: string) => void }) {
 }
 
 // ─── CABINET ─────────────────────────────────────────────────────
-function CabinetPage({ setActive }: { setActive: (id: string) => void }) {
+function CabinetPage({
+  setActive,
+  steamId,
+  onLogout,
+}: {
+  setActive: (id: string) => void;
+  steamId: string | null;
+  onLogout: () => void;
+}) {
   const [tab, setTab] = useState<"profile" | "history">("profile");
-  const isLoggedIn = false;
+  const [loading, setLoading] = useState(false);
+  const isLoggedIn = !!steamId;
+
+  const handleSteamLogin = async () => {
+    setLoading(true);
+    try {
+      const url = await getSteamLoginUrl();
+      window.location.href = url;
+    } catch {
+      setLoading(false);
+    }
+  };
 
   if (!isLoggedIn) {
     return (
@@ -316,9 +384,13 @@ function CabinetPage({ setActive }: { setActive: (id: string) => void }) {
           <p className="font-roboto text-muted-foreground mb-8 leading-relaxed">
             Войдите через Steam для доступа к личному кабинету,<br />истории покупок и управлению балансом.
           </p>
-          <button className="btn-primary mx-auto flex items-center gap-3 justify-center">
-            <Icon name="LogIn" size={16} />
-            Войти через Steam
+          <button
+            onClick={handleSteamLogin}
+            disabled={loading}
+            className="btn-primary mx-auto flex items-center gap-3 justify-center disabled:opacity-60"
+          >
+            <Icon name={loading ? "Loader" : "LogIn"} size={16} className={loading ? "animate-spin" : ""} />
+            {loading ? "Перенаправление..." : "Войти через Steam"}
           </button>
           <p className="font-roboto text-xs text-muted-foreground mt-6">
             Нажимая кнопку, вы соглашаетесь с{" "}
@@ -339,15 +411,19 @@ function CabinetPage({ setActive }: { setActive: (id: string) => void }) {
             <div className="w-16 h-16 border border-white/40 flex items-center justify-center mx-auto mb-3">
               <Icon name="User" size={28} className="text-white" />
             </div>
-            <div className="font-oswald text-lg uppercase">SurvivorXX</div>
-            <div className="font-roboto text-xs text-muted-foreground">Steam ID: 76561198...</div>
+            <div className="font-oswald text-lg uppercase">Игрок</div>
+            <div className="font-roboto text-xs text-muted-foreground">Steam ID: {steamId}</div>
             <div className="mt-4 p-3 bg-muted border border-border">
               <div className="font-roboto text-xs text-muted-foreground mb-1">Баланс</div>
-              <div className="font-oswald text-2xl text-white">320 ₽</div>
+              <div className="font-oswald text-2xl text-white">0 ₽</div>
             </div>
             <button onClick={() => setActive("topup")} className="btn-primary w-full mt-4 text-xs justify-center flex items-center gap-2">
               <Icon name="Plus" size={14} />
               Пополнить
+            </button>
+            <button onClick={onLogout} className="w-full mt-2 font-roboto text-xs text-muted-foreground hover:text-white transition-colors flex items-center justify-center gap-2 py-2">
+              <Icon name="LogOut" size={12} />
+              Выйти
             </button>
           </div>
 
@@ -378,12 +454,10 @@ function CabinetPage({ setActive }: { setActive: (id: string) => void }) {
               <h2 className="font-oswald text-xl uppercase tracking-wider mb-6 border-b border-border pb-4">Профиль</h2>
               <div className="space-y-4">
                 {[
-                  { label: "Игровой ник", value: "SurvivorXX" },
-                  { label: "Steam ID", value: "76561198XXXXXXXX" },
-                  { label: "Дата регистрации", value: "15.01.2026" },
-                  { label: "Статус на сервере", value: "VIP" },
-                  { label: "Покупок всего", value: "3" },
-                  { label: "Потрачено", value: "627 ₽" },
+                  { label: "Steam ID", value: steamId ?? "—" },
+                  { label: "Статус на сервере", value: "—" },
+                  { label: "Покупок всего", value: "0" },
+                  { label: "Потрачено", value: "0 ₽" },
                 ].map(row => (
                   <div key={row.label} className="flex justify-between items-center py-3 border-b border-border/50">
                     <span className="font-roboto text-sm text-muted-foreground">{row.label}</span>
@@ -622,12 +696,36 @@ function SupportPage() {
 // ─── MAIN ────────────────────────────────────────────────────────
 export default function Index() {
   const [activePage, setActivePage] = useState("home");
+  const [steamId, setSteamId] = useState<string | null>(() => getSavedSteamId());
+
+  // Handle Steam OpenID callback (?auth=success&steamId=...)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const auth = params.get("auth");
+    const id = params.get("steamId");
+
+    if (auth === "success" && id) {
+      saveSteamId(id);
+      setSteamId(id);
+      setActivePage("cabinet");
+      // Clean URL without page reload
+      window.history.replaceState({}, "", window.location.pathname);
+    } else if (auth === "error") {
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    clearSteamId();
+    setSteamId(null);
+    setActivePage("home");
+  };
 
   const renderPage = () => {
     switch (activePage) {
       case "home": return <HomePage setActive={setActivePage} />;
       case "catalog": return <CatalogPage setActive={setActivePage} />;
-      case "cabinet": return <CabinetPage setActive={setActivePage} />;
+      case "cabinet": return <CabinetPage setActive={setActivePage} steamId={steamId} onLogout={handleLogout} />;
       case "topup": return <TopupPage />;
       case "legal": return <LegalPage />;
       case "support": return <SupportPage />;
@@ -637,7 +735,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar active={activePage} setActive={setActivePage} />
+      <Navbar active={activePage} setActive={setActivePage} steamId={steamId} />
       <main>{renderPage()}</main>
 
       <footer className="border-t border-border bg-card">
