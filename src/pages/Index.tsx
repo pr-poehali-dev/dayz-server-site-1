@@ -37,7 +37,7 @@ const CATEGORIES = ["Все", "VIP", "Снаряжение", "Транспорт
 const PRODUCTS = [
   { id: 1, name: "VIP", category: "VIP", price: 299, badge: "Хит", desc: "Позволяет быстрее подключаться к серверу игнорируя очередь", icon: "Crown" },
   // Транспорт
-  { id: 2, name: "GUNTER 2", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car" },
+  { id: 2, name: "GUNTER 2", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/50031df6-61e0-4647-b0bf-302fbeacc75b.png" },
   { id: 3, name: "OLGA 24", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/840d220c-3fa2-4fd9-a102-41e99fb7e34b.png" },
   { id: 4, name: "ADA 4X4", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/a8364b5f-6fba-444d-a65d-f66bc7712327.png" },
   { id: 5, name: "SARKA 120", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car" },
