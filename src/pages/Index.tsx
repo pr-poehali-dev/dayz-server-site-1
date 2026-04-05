@@ -229,7 +229,7 @@ function CatalogPage({ setActive }: { setActive: (id: string) => void }) {
     <div className="pt-24 pb-20 max-w-7xl mx-auto px-4">
       <div className="mb-10">
         <h1 className="section-title mb-2">Каталог <span>товаров</span></h1>
-        <p className="font-roboto text-muted-foreground text-sm">Снаряжение, оружие, привилегии и услуги для DayZ сервера</p>
+        <p className="font-roboto text-muted-foreground text-sm">Снаряжение, транспорт, привилегии, ресурсы для DayZ сервера</p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-4 mb-8">
