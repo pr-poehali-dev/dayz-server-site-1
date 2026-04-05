@@ -584,8 +584,8 @@ function SupportPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12 max-w-2xl">
         {[
-          { icon: "MessageCircle", title: "Discord", desc: "Основной канал поддержки. Ответим в течение 1 часа", action: "Перейти в Discord" },
-          { icon: "Mail", title: "Email", desc: "Для официальных обращений и споров", action: "Написать письмо" },
+          { icon: "MessageCircle", title: "Discord", desc: "Основной канал поддержки. Ответим в течение 1 часа", action: "Перейти в Discord", href: "https://discord.gg/jcc9y6WGju" },
+          { icon: "Mail", title: "Email", desc: "Для официальных обращений и споров", action: "Написать письмо", href: null },
         ].map(c => (
           <div key={c.title} className="card-product p-6 text-center">
             <div className="w-12 h-12 border border-white/40 flex items-center justify-center mx-auto mb-4">
@@ -593,7 +593,11 @@ function SupportPage() {
             </div>
             <h3 className="font-oswald text-base uppercase tracking-wide mb-2">{c.title}</h3>
             <p className="font-roboto text-xs text-muted-foreground mb-4 leading-relaxed">{c.desc}</p>
-            <button className="btn-secondary text-xs w-full">{c.action}</button>
+            {c.href ? (
+              <a href={c.href} target="_blank" rel="noopener noreferrer" className="btn-secondary text-xs w-full block text-center">{c.action}</a>
+            ) : (
+              <button className="btn-secondary text-xs w-full">{c.action}</button>
+            )}
           </div>
         ))}
       </div>
