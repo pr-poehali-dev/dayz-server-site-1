@@ -44,11 +44,11 @@ const PRODUCTS = [
   { id: 6, name: "V3S", category: "Транспорт", price: 450, badge: null, desc: "Единоразовая выдача. Грузовик спавнится в игровом мире", icon: "Truck", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/fdaad5f0-70dc-43b0-adc7-0d61cfbee78e.png" },
   { id: 7, name: "HUMVEE", category: "Транспорт", price: 500, badge: "Редкое", desc: "Единоразовая выдача. Военный джип спавнится в игровом мире", icon: "Truck", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/7f26a40b-3ed7-4a81-850b-841cc126768d.png" },
   // Снаряжение
-  { id: 10, name: "ATACS", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж ATACS. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
-  { id: 11, name: "MULTICAM", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж MULTICAM. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
-  { id: 12, name: "PIXEL", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж PIXEL. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
-  { id: 13, name: "ACUPAT", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж ACUPAT. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
-  { id: 14, name: "BLACK OPS", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж BLACK OPS. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
+  { id: 10, name: "ATACS", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж ATACS. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield", imageCrop: { src: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/53a142a8-0ee1-45d2-93f8-de74e1889f95.png", pos: "0% 100%", size: "500% 130%" } },
+  { id: 11, name: "MULTICAM", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж MULTICAM. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield", imageCrop: { src: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/53a142a8-0ee1-45d2-93f8-de74e1889f95.png", pos: "25% 100%", size: "500% 130%" } },
+  { id: 12, name: "PIXEL", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж PIXEL. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield", imageCrop: { src: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/53a142a8-0ee1-45d2-93f8-de74e1889f95.png", pos: "50% 100%", size: "500% 130%" } },
+  { id: 13, name: "ACUPAT", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж ACUPAT. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield", imageCrop: { src: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/53a142a8-0ee1-45d2-93f8-de74e1889f95.png", pos: "75% 100%", size: "500% 130%" } },
+  { id: 14, name: "BLACK OPS", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж BLACK OPS. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield", imageCrop: { src: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/53a142a8-0ee1-45d2-93f8-de74e1889f95.png", pos: "100% 100%", size: "500% 130%" } },
   { id: 15, name: "FLORA", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж FLORA. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
   { id: 16, name: "MULTICAM DESERT", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж MULTICAM DESERT. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
   { id: 17, name: "VEGETATO", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж VEGETATO. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
@@ -319,6 +319,16 @@ function CatalogPage({ setActive }: { setActive: (id: string) => void }) {
                   alt={product.name}
                   className="w-full object-contain"
                   style={{ aspectRatio: "4/3" }}
+                />
+              ) : "imageCrop" in product && product.imageCrop ? (
+                <div
+                  style={{
+                    aspectRatio: "4/3",
+                    backgroundImage: `url(${(product.imageCrop as {src:string;pos:string;size:string}).src})`,
+                    backgroundPosition: (product.imageCrop as {src:string;pos:string;size:string}).pos,
+                    backgroundSize: (product.imageCrop as {src:string;pos:string;size:string}).size,
+                    backgroundRepeat: "no-repeat",
+                  }}
                 />
               ) : (
                 <div className="flex items-center justify-center" style={{ aspectRatio: "4/3" }}>
