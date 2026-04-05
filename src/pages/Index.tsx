@@ -582,24 +582,15 @@ function SupportPage() {
       <h1 className="section-title mb-2">Служба <span>поддержки</span></h1>
       <p className="font-roboto text-muted-foreground text-sm mb-10">Мы поможем решить любую проблему с сервером или покупками</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12 max-w-2xl">
-        {[
-          { icon: "MessageCircle", title: "Discord", desc: "Основной канал поддержки. Ответим в течение 1 часа", action: "Перейти в Discord", href: "https://discord.gg/jcc9y6WGju" },
-          { icon: "Mail", title: "Email", desc: "Для официальных обращений и споров", action: "Написать письмо", href: null },
-        ].map(c => (
-          <div key={c.title} className="card-product p-6 text-center">
-            <div className="w-12 h-12 border border-white/40 flex items-center justify-center mx-auto mb-4">
-              <Icon name={c.icon} size={22} className="text-white" />
-            </div>
-            <h3 className="font-oswald text-base uppercase tracking-wide mb-2">{c.title}</h3>
-            <p className="font-roboto text-xs text-muted-foreground mb-4 leading-relaxed">{c.desc}</p>
-            {c.href ? (
-              <a href={c.href} target="_blank" rel="noopener noreferrer" className="btn-secondary text-xs w-full block text-center">{c.action}</a>
-            ) : (
-              <button className="btn-secondary text-xs w-full">{c.action}</button>
-            )}
+      <div className="mb-12 max-w-sm">
+        <div className="card-product p-6 text-center">
+          <div className="w-12 h-12 border border-white/40 flex items-center justify-center mx-auto mb-4">
+            <Icon name="MessageCircle" size={22} className="text-white" />
           </div>
-        ))}
+          <h3 className="font-oswald text-base uppercase tracking-wide mb-2">Discord</h3>
+          <p className="font-roboto text-xs text-muted-foreground mb-4 leading-relaxed">Основной канал поддержки. Ответим в течение 1 часа</p>
+          <a href="https://discord.gg/jcc9y6WGju" target="_blank" rel="noopener noreferrer" className="btn-secondary text-xs w-full block text-center">Перейти в Discord</a>
+        </div>
       </div>
 
       <div className="card-product p-6">
