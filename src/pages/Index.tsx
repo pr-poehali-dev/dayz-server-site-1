@@ -42,7 +42,7 @@ const PRODUCTS = [
   { id: 4, name: "ADA 4X4", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/a8364b5f-6fba-444d-a65d-f66bc7712327.png" },
   { id: 5, name: "SARKA 120", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/9ac6c3f6-cdce-4c04-96cd-e9c788d5164d.png" },
   { id: 6, name: "V3S", category: "Транспорт", price: 450, badge: null, desc: "Единоразовая выдача. Грузовик спавнится в игровом мире", icon: "Truck", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/fdaad5f0-70dc-43b0-adc7-0d61cfbee78e.png" },
-  { id: 7, name: "HUMVEE", category: "Транспорт", price: 500, badge: "Редкое", desc: "Единоразовая выдача. Военный джип спавнится в игровом мире", icon: "Truck" },
+  { id: 7, name: "HUMVEE", category: "Транспорт", price: 500, badge: "Редкое", desc: "Единоразовая выдача. Военный джип спавнится в игровом мире", icon: "Truck", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/7f26a40b-3ed7-4a81-850b-841cc126768d.png" },
   // Снаряжение
   { id: 10, name: "ATACS", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж ATACS. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
   { id: 11, name: "MULTICAM", category: "Снаряжение", price: 700, badge: null, desc: "Military Clothing Retexture — камуфляж MULTICAM. Действует 30 дней. Капюшон в слот очков, шлем на голову", icon: "Shield" },
