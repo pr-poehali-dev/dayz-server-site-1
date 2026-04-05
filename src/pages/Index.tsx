@@ -39,7 +39,7 @@ const PRODUCTS = [
   // Транспорт
   { id: 2, name: "GUNTER 2", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car" },
   { id: 3, name: "OLGA 24", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car" },
-  { id: 4, name: "ADA 4X4", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car" },
+  { id: 4, name: "ADA 4X4", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car", image: "https://cdn.poehali.dev/projects/3cb6e349-c73c-4755-a2ab-0da11e75c9c7/bucket/15a64044-fd7f-4bd2-bb3b-c608bd0f3cca.png" },
   { id: 5, name: "SARKA 120", category: "Транспорт", price: 350, badge: null, desc: "Единоразовая выдача. Автомобиль спавнится в игровом мире", icon: "Car" },
   { id: 6, name: "V3S", category: "Транспорт", price: 450, badge: null, desc: "Единоразовая выдача. Грузовик спавнится в игровом мире", icon: "Truck" },
   { id: 7, name: "HUMVEE", category: "Транспорт", price: 500, badge: "Редкое", desc: "Единоразовая выдача. Военный джип спавнится в игровом мире", icon: "Truck" },
@@ -312,16 +312,31 @@ function CatalogPage({ setActive }: { setActive: (id: string) => void }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filtered.map((product) => (
           <div key={product.id} className="card-product animate-fade-in">
-            <div className="p-4 pb-0 flex justify-between items-start">
-              <div className="w-10 h-10 bg-muted border border-border flex items-center justify-center">
-                <Icon name={product.icon} size={18} className="text-white" fallback="Package" />
+            {"image" in product && product.image ? (
+              <div className="relative">
+                <img
+                  src={product.image as string}
+                  alt={product.name}
+                  className="w-full h-40 object-cover"
+                />
+                {product.badge && (
+                  <span className={`tag-badge border absolute top-2 right-2 ${BADGE_COLORS[product.badge] || "bg-muted text-muted-foreground border-border"}`}>
+                    {product.badge}
+                  </span>
+                )}
               </div>
-              {product.badge && (
-                <span className={`tag-badge border ${BADGE_COLORS[product.badge] || "bg-muted text-muted-foreground border-border"}`}>
-                  {product.badge}
-                </span>
-              )}
-            </div>
+            ) : (
+              <div className="p-4 pb-0 flex justify-between items-start">
+                <div className="w-10 h-10 bg-muted border border-border flex items-center justify-center">
+                  <Icon name={product.icon} size={18} className="text-white" fallback="Package" />
+                </div>
+                {product.badge && (
+                  <span className={`tag-badge border ${BADGE_COLORS[product.badge] || "bg-muted text-muted-foreground border-border"}`}>
+                    {product.badge}
+                  </span>
+                )}
+              </div>
+            )}
 
             <div className="p-4">
               <div className="font-oswald text-xs text-muted-foreground uppercase tracking-wider mb-1">{product.category}</div>
